@@ -11,6 +11,7 @@ import { globToRegexp } from './glob-to-regexp';
 
 const DEFAULT_TITLE_PREFIX = '';
 const DEFAULT_FILES = '**/*.stories.@(mdx|tsx|ts|jsx|js)';
+const DEFAULT_APPEND_TITLE_PREFIX = false;
 
 // LEGACY support for bad glob patterns we had in SB 5 - remove in SB7
 const fixBadGlob = deprecate(
@@ -69,24 +70,28 @@ export const normalizeStoriesEntry = (
         titlePrefix: DEFAULT_TITLE_PREFIX,
         directory,
         files,
+        appendTitlePrefix: DEFAULT_APPEND_TITLE_PREFIX,
       };
     } else if (isDirectory(configDir, entry)) {
       specifierWithoutMatcher = {
         titlePrefix: DEFAULT_TITLE_PREFIX,
         directory: entry,
         files: DEFAULT_FILES,
+        appendTitlePrefix: DEFAULT_APPEND_TITLE_PREFIX,
       };
     } else {
       specifierWithoutMatcher = {
         titlePrefix: DEFAULT_TITLE_PREFIX,
         directory: path.dirname(entry),
         files: path.basename(entry),
+        appendTitlePrefix: DEFAULT_APPEND_TITLE_PREFIX,
       };
     }
   } else {
     specifierWithoutMatcher = {
       titlePrefix: DEFAULT_TITLE_PREFIX,
       files: DEFAULT_FILES,
+      appendTitlePrefix: DEFAULT_APPEND_TITLE_PREFIX,
       ...entry,
     };
   }

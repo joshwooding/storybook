@@ -270,6 +270,10 @@ interface StoriesSpecifier {
    * If unset, we use `** / *.stories.@(mdx|tsx|ts|jsx|js)` (no spaces)
    */
   files?: string;
+  /**
+   * Toggle prefixing static titles.
+   */
+  appendTitlePrefix?: boolean;
 }
 
 export type StoriesEntry = string | StoriesSpecifier;

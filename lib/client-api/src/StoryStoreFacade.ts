@@ -151,17 +151,16 @@ export class StoryStoreFacade<TFramework extends AnyFramework> {
     // eslint-disable-next-line prefer-const
     let { id: componentId, title } = defaultExport || {};
 
-    title =
-      title ||
-      autoTitle(
-        fileName,
-        (global.STORIES || []).map(
-          (specifier: NormalizedStoriesSpecifier & { importPathMatcher: string }) => ({
-            ...specifier,
-            importPathMatcher: new RegExp(specifier.importPathMatcher),
-          })
-        )
-      );
+    title = autoTitle(
+      fileName,
+      (global.STORIES || []).map(
+        (specifier: NormalizedStoriesSpecifier & { importPathMatcher: string }) => ({
+          ...specifier,
+          importPathMatcher: new RegExp(specifier.importPathMatcher),
+        })
+      ),
+      title
+    );
     if (!title) {
       logger.info(
         `Unexpected default export without title in '${fileName}': ${JSON.stringify(

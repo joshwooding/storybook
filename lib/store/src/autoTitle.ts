@@ -8,6 +8,7 @@ interface NormalizedStoriesSpecifier {
   directory: string;
   files?: string;
   importPathMatcher: RegExp;
+  appendTitlePrefix?: boolean;
 }
 
 const stripExtension = (path: string[]) => {
@@ -47,14 +48,23 @@ function pathJoin(paths: string[]): string {
   return paths.join('/').replace(slashes, '/');
 }
 
-export const autoTitleFromSpecifier = (fileName: string, entry: NormalizedStoriesSpecifier) => {
-  const { directory, importPathMatcher, titlePrefix = '' } = entry || {};
+export const autoTitleFromSpecifier = (
+  fileName: string,
+  entry: NormalizedStoriesSpecifier,
+  title?: string
+) => {
+  const { directory, importPathMatcher, titlePrefix = '', appendTitlePrefix } = entry || {};
+
+  if (!appendTitlePrefix && title) {
+    return title;
+  }
+
   // On Windows, backslashes are used in paths, which can cause problems here
   // slash makes sure we always handle paths with unix-style forward slash
   const normalizedFileName = slash(fileName);
 
   if (importPathMatcher.exec(normalizedFileName)) {
-    const suffix = normalizedFileName.replace(directory, '');
+    const suffix = appendTitlePrefix && title ? title : normalizedFileName.replace(directory, '');
     const titleAndSuffix = slash(pathJoin([titlePrefix, suffix]));
     let path = titleAndSuffix.split('/');
     path = stripExtension(path).map(startCase);
@@ -64,10 +74,14 @@ export const autoTitleFromSpecifier = (fileName: string, entry: NormalizedStorie
   return undefined;
 };
 
-export const autoTitle = (fileName: string, storiesEntries: NormalizedStoriesSpecifier[]) => {
+export const autoTitle = (
+  fileName: string,
+  storiesEntries: NormalizedStoriesSpecifier[],
+  title?: string
+) => {
   for (let i = 0; i < storiesEntries.length; i += 1) {
-    const title = autoTitleFromSpecifier(fileName, storiesEntries[i]);
-    if (title) return title;
+    const result = autoTitleFromSpecifier(fileName, storiesEntries[i], title);
+    if (result) return result;
   }
   return undefined;
 };

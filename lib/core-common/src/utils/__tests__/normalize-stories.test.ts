@@ -57,6 +57,7 @@ describe('normalizeStoriesEntry', () => {
         "titlePrefix": "",
         "directory": "./path/to",
         "files": "file.stories.mdx",
+        "appendTitlePrefix": false,
         "importPathMatcher": {}
       }
     `);
@@ -76,6 +77,7 @@ describe('normalizeStoriesEntry', () => {
         "titlePrefix": "",
         "directory": "./.storybook",
         "files": "file.stories.mdx",
+        "appendTitlePrefix": false,
         "importPathMatcher": {}
       }
     `);
@@ -95,6 +97,7 @@ describe('normalizeStoriesEntry', () => {
         "titlePrefix": "",
         "directory": ".",
         "files": "*/*.stories.mdx",
+        "appendTitlePrefix": false,
         "importPathMatcher": {}
       }
     `);
@@ -118,6 +121,7 @@ describe('normalizeStoriesEntry', () => {
         "titlePrefix": "",
         "directory": ".",
         "files": "*/*/*.stories.mdx",
+        "appendTitlePrefix": false,
         "importPathMatcher": {}
       }
     `);
@@ -142,6 +146,7 @@ describe('normalizeStoriesEntry', () => {
         "titlePrefix": "",
         "directory": ".",
         "files": "**/*.stories.mdx",
+        "appendTitlePrefix": false,
         "importPathMatcher": {}
       }
     `);
@@ -164,6 +169,7 @@ describe('normalizeStoriesEntry', () => {
         "titlePrefix": "",
         "directory": ".",
         "files": "**/foo/**/*.stories.mdx",
+        "appendTitlePrefix": false,
         "importPathMatcher": {}
       }
     `);
@@ -187,6 +193,7 @@ describe('normalizeStoriesEntry', () => {
         "titlePrefix": "",
         "directory": ".",
         "files": "**/foo/*.stories.mdx",
+        "appendTitlePrefix": false,
         "importPathMatcher": {}
       }
     `);
@@ -210,6 +217,7 @@ describe('normalizeStoriesEntry', () => {
         "titlePrefix": "",
         "directory": "../src",
         "files": "*.stories.mdx",
+        "appendTitlePrefix": false,
         "importPathMatcher": {}
       }
     `);
@@ -228,6 +236,7 @@ describe('normalizeStoriesEntry', () => {
         "titlePrefix": "",
         "directory": ".",
         "files": "**/*.stories.@(mdx|tsx|ts|jsx|js)",
+        "appendTitlePrefix": false,
         "importPathMatcher": {}
       }
     `);
@@ -239,6 +248,7 @@ describe('normalizeStoriesEntry', () => {
       {
         "titlePrefix": "",
         "files": "**/*.stories.@(mdx|tsx|ts|jsx|js)",
+        "appendTitlePrefix": false,
         "directory": ".",
         "importPathMatcher": {}
       }
@@ -251,6 +261,7 @@ describe('normalizeStoriesEntry', () => {
       {
         "titlePrefix": "",
         "files": "*.stories.mdx",
+        "appendTitlePrefix": false,
         "directory": ".",
         "importPathMatcher": {}
       }
@@ -263,6 +274,7 @@ describe('normalizeStoriesEntry', () => {
       {
         "titlePrefix": "atoms",
         "files": "**/*.stories.@(mdx|tsx|ts|jsx|js)",
+        "appendTitlePrefix": false,
         "directory": ".",
         "importPathMatcher": {}
       }
@@ -278,6 +290,7 @@ describe('normalizeStoriesEntry', () => {
       {
         "titlePrefix": "atoms",
         "files": "*.stories.mdx",
+        "appendTitlePrefix": false,
         "directory": ".",
         "importPathMatcher": {}
       }

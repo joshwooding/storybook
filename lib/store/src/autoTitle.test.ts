@@ -58,6 +58,31 @@ describe('autoTitle', () => {
       ).toMatchInlineSnapshot(`To/Button`);
     });
 
+    it('match with titlePrefix and appendTitlePrefix and title', () => {
+      expect(
+        auto(
+          './path/to/file.stories.js',
+          normalizeStoriesEntry(
+            { directory: './path', titlePrefix: 'atoms', appendTitlePrefix: true },
+            options
+          ),
+          'ExistingTitle'
+        )
+      ).toMatchInlineSnapshot(`Atoms/Existing Title`);
+    });
+
+    it('match with titlePrefix and appendTitlePrefix and no title', () => {
+      expect(
+        auto(
+          './path/to/file.stories.js',
+          normalizeStoriesEntry(
+            { directory: './path', titlePrefix: 'atoms', appendTitlePrefix: true },
+            options
+          )
+        )
+      ).toMatchInlineSnapshot(`Atoms/To/File`);
+    });
+
     it('match with hyphen path', () => {
       expect(
         auto(
@@ -98,6 +123,31 @@ describe('autoTitle', () => {
         auto(
           './path/to/file.stories.js',
           normalizeStoriesEntry({ directory: './path/', titlePrefix: 'atoms' }, options)
+        )
+      ).toMatchInlineSnapshot(`Atoms/To/File`);
+    });
+
+    it('match with titlePrefix and appendTitlePrefix and title', () => {
+      expect(
+        auto(
+          './path/to/file.stories.js',
+          normalizeStoriesEntry(
+            { directory: './path/', titlePrefix: 'atoms', appendTitlePrefix: true },
+            options
+          ),
+          'ExistingTitle'
+        )
+      ).toMatchInlineSnapshot(`Atoms/Existing Title`);
+    });
+
+    it('match with titlePrefix and appendTitlePrefix and no title', () => {
+      expect(
+        auto(
+          './path/to/file.stories.js',
+          normalizeStoriesEntry(
+            { directory: './path/', titlePrefix: 'atoms', appendTitlePrefix: true },
+            options
+          )
         )
       ).toMatchInlineSnapshot(`Atoms/To/File`);
     });
