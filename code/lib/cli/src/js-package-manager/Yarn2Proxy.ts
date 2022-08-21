@@ -65,9 +65,9 @@ export class Yarn2Proxy extends JsPackageManager {
     const field = fetchAllVersions ? 'versions' : 'version';
     const args = ['--fields', field, '--json'];
 
-    const commandResult = this.executeCommand('yarn', ['npm', 'info', packageName, ...args]);
-
     try {
+      const commandResult = this.executeCommand('yarn', ['npm', 'info', packageName, ...args]);
+
       const parsedOutput = JSON.parse(commandResult);
       return parsedOutput[field];
     } catch (e) {

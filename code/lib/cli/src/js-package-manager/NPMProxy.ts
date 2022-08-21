@@ -109,9 +109,8 @@ export class NPMProxy extends JsPackageManager {
   ): Promise<T extends true ? string[] : string> {
     const args = [fetchAllVersions ? 'versions' : 'version', '--json'];
 
-    const commandResult = this.executeCommand('npm', ['info', packageName, ...args]);
-
     try {
+      const commandResult = this.executeCommand('npm', ['info', packageName, ...args]);
       const parsedOutput = JSON.parse(commandResult);
 
       if (parsedOutput.error) {

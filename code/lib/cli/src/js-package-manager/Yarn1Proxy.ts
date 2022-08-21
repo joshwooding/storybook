@@ -64,9 +64,9 @@ export class Yarn1Proxy extends JsPackageManager {
   ): Promise<T extends true ? string[] : string> {
     const args = [fetchAllVersions ? 'versions' : 'version', '--json'];
 
-    const commandResult = this.executeCommand('yarn', ['info', packageName, ...args]);
-
     try {
+      const commandResult = this.executeCommand('yarn', ['info', packageName, ...args]);
+
       const parsedOutput = JSON.parse(commandResult);
       if (parsedOutput.type === 'inspect') {
         return parsedOutput.data;
